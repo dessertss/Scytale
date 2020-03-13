@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rect</title>
+    <style media="screen">
+        body {
+            background: black;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #FFF;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let oC = document.getElementById('c1');
+            let gd = oC.getContext('2d');
+
+            // 自适应：window.onresize
+            //矩形：
+            // rect()       路径操作
+            // strokeRect() 图形操作
+            // fillRect()   图形操作
+
+            // gd.rect(100, 100, 400, 300);
+            // gd.strokeStyle = 'blue';
+            // gd.stroke();
+            // gd.fill();
+
+            gd.strokeStyle = 'yellow';
+            gd.lineWidth = 50;
+            gd.strokeRect(100, 100, 400, 300);
+
+            gd.fillStyle = 'green';
+            gd.fillRect(100, 100, 400, 300);
+
+            // gd.fillRect(100, 100, 400, 300);
+
+            // clearRect 删除一块图形
+
+            // canvas: 不会保存图形
+            // 1. 图形不能修改--删了重画
+            // 2. 也没有事件
+            // 3. 速度快
+
+            
+
+        };
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="800" height="600"></canvas>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>moverect</title>
+    <style media="screen">
+        body {
+            background: black;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #FFF;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let oC = document.getElementById('c1');
+            let gd = oC.getContext('2d');
+            let left = 100;
+            // 自适应：window.onresize
+            //矩形：
+            // rect()       路径操作
+            // strokeRect() 图形操作
+            // fillRect()   图形操作
+
+            // gd.rect(100, 100, 400, 300);
+            // gd.strokeStyle = 'blue';
+            // gd.stroke();
+            // gd.fill();
+
+            // 动画请求帧，根据计算机当前的性能去决定，比setInterval更合理的方式。这里看不出什么效果
+            // console.log(requestAnimationFrame);
+
+            requestAnimationFrame(next);
+
+            function next() {
+                gd.clearRect(0, 0, oC.width, oC.height); //清除所有然后移动
+
+                left += 5;
+
+                gd.strokeRect(left, 100, 200, 150);
+
+                requestAnimationFrame(next);
+            };
+
+            // setInterval 定时器 单位：毫秒
+            // setInterval(function () {
+            //     // gd.clearRect(left-0.5, 100-0.5, 200+1, 150+1);
+            //     gd.clearRect(0, 0, oC.width, oC.height); //清除所有然后移动
+            //     left += 5;
+            //     gd.strokeRect(left, 100, 200, 150);
+            // }, 40);
+        };
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="800" height="600"></canvas>
+</body>
+
+</html>

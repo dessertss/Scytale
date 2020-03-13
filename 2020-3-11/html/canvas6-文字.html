@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas6-文字</title>
+    <style media="screen">
+        body {
+            background: black;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #FFF;
+        }
+    </style>
+    <script>
+        // 角度转弧度
+        function d2a(n) {
+            return n * Math.PI / 180;
+        };
+        // 弧度转角度
+        function a2d(n) {
+            n * 180 / Math.PI;
+        };
+        window.onload = function () {
+            // 画文字
+
+            let oC = document.getElementById('c1');
+            let gd = oC.getContext('2d');
+
+            gd.font='bold 40px 宋体';
+            gd.strokeText("你好啊", 100, 100);
+            gd.strokeText("hello", 200, 200);
+        };
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="800" height="600"></canvas>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>moverect</title>
+    <style media="screen">
+        body {
+            background: black;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #FFF;
+        }
+    </style>
+    <script>
+        // 角度转弧度
+        function d2a(n){
+            return n*Math.PI/180;
+        };
+        // 弧度转角度
+        function a2d(n){
+            n*180/Math.PI;
+        };
+        window.onload = function () {
+            let oC = document.getElementById('c1');
+            let gd = oC.getContext('2d');
+            let left = 100;
+
+            // 如何画圆  画弧 路径操作  描边
+            // arc(圆心X, 圆心Y, 起始弧度, 终止弧度, 是否是逆时针方向画)
+            // 在js里面所有度数单位：弧度 Π
+            let cx = 200,
+                cy = 200,
+                r = 150;
+            gd.beginPath();
+            gd.arc(cx, cy, r,  d2a(0), d2a(360), true);
+            //false代表顺时针画，true代表逆时针画还剩那么多的角度
+            gd.strokeStyle='red';
+            gd.stroke();
+
+            oC.onmousemove=function(ev){
+                // gd.clearRect(0, 0, oC.width, oC.height);
+                let d=Math.sqrt((ev.offsetX-cx)*(ev.offsetX-cx)+(ev.offsetY-cy)*(ev.offsetY-cy));
+                if(d<=r){
+                    gd.strokeStyle='red';
+                }else{
+                    gd.strokeStyle='black';
+                }
+                gd.beginPath();
+                gd.arc(cx, cy, r,  d2a(0), d2a(360), true);
+                gd.stroke();
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="800" height="600"></canvas>
+</body>
+
+</html>

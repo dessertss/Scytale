@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas8-连续变换</title>
+    <style media="screen">
+        body {
+            background: black;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #FFF;
+        }
+    </style>
+    <script>
+        // 角度转弧度
+        function d2a(n) {
+            return n * Math.PI / 180;
+        };
+        // 弧度转角度
+        function a2d(n) {
+            n * 180 / Math.PI;
+        };
+        window.onload = function () {
+            // 一切操作都在画图之前
+            // 在canvas里面没有图形一说，全部都是像素点组成的
+            // 先旋转再移出，视觉效果是反着来的，所以translate()在前
+            let oC = document.getElementById('c1');
+            let gd = oC.getContext('2d');
+
+            let g1 = {
+                l: 100,
+                t: 100,
+                w: 200,
+                h: 150,
+                r: 0
+            };
+            let g2 = {
+                l: 50,
+                t: 80,
+                w: 100,
+                h: 350,
+                r: 0
+            };
+            requestAnimationFrame(next);
+
+            function next() {
+                gd.clearRect(0, 0, oC.width, oC.height);
+
+                function DrawRotate(l,t,w,h,r){
+                    gd.save();
+                    gd.beginPath();
+                    gd.translate(w/2+l,h/2+t);
+                    gd.rotate(r * Math.PI / 180);
+                    gd.strokeRect(-w/2, -h/2, w, h);
+                    gd.restore();
+                };
+                DrawRotate(g1.l, g1.t, g1.w, g1.h, g1.r++);
+                DrawRotate(g2.l, g2.t, g2.w, g2.h, g2.r--);
+                // g1.r++; //
+                // gd.save(); //保存：canvas的状态(图形并不保存)-颜色 translate rotate
+                // gd.beginPath();
+                // gd.translate(g1.w/2+g1.l, g1.h/2+g1.t);
+                // gd.rotate(g1.r * Math.PI / 180); //旋转弧度
+                // gd.strokeRect(-g1.w/2, -g1.h/2, g1.w, g1.h);
+
+                // gd.restore(); //恢复：恢复到上一次保存的状态
+
+                // g2.r--; //
+                // gd.save(); //保存：canvas的状态(图形并不保存)-颜色 translate rotate
+                // gd.beginPath();
+                // gd.translate(g2.w/2+g2.l, g2.h/2+g2.t);
+                // gd.rotate(g2.r * Math.PI / 180); //旋转弧度
+                // gd.strokeRect(-g2.w/2, -g2.h/2, g2.w, g2.h);
+
+                // gd.restore(); //恢复：恢复到上一次保存的状态
+
+                requestAnimationFrame(next);
+            }
+
+        };
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="800" height="600"></canvas>
+</body>
+
+</html>

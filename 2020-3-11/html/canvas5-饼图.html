@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas5-饼图</title>
+    <style media="screen">
+        body {
+            background: black;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #FFF;
+        }
+    </style>
+    <script>
+        // 角度转弧度
+        function d2a(n) {
+            return n * Math.PI / 180;
+        };
+        // 弧度转角度
+        function a2d(n) {
+            n * 180 / Math.PI;
+        };
+        window.onload = function () {
+            // 画饼图
+            // 男：200    女：100    其他：50
+
+            let oC = document.getElementById('c1');
+            let gd = oC.getContext('2d');
+
+            let cx = 400,
+                cy = 200,
+                r = 200;
+            let datas = [
+                {data:300, color:'red'},
+                {data:200, color:'blue'},
+                {data:20, color:'green'},
+            ]; 
+            let startAng = 0,
+                endAng = 80;
+
+            function DrawPie(startAng, endAng, color) {
+                let x = cx + Math.cos(d2a(startAng)) * r;
+                let y = cy + Math.sin(d2a(startAng)) * r;
+
+                gd.beginPath();
+                gd.moveTo(cx, cy);
+                gd.lineTo(x, y);
+
+                gd.arc(cx, cy, r, d2a(startAng), d2a(endAng), false);
+
+                gd.closePath();
+                gd.fillStyle = color;
+                gd.fill();
+            };
+
+            let sum=0;
+            datas.forEach(i=>{
+                sum+=i.data;
+            });
+
+            let now=0;
+            datas.forEach(i=>{
+                let ang=360*i.data/sum;
+
+                DrawPie(now, now+ang, i.color);
+
+                now+=ang;
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="800" height="600"></canvas>
+</body>
+
+</html>

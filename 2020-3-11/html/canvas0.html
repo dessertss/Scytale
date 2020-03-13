@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style media="screen">
+        body {
+            background: black;
+            text-align: center;
+        }
+
+        #c1 {
+            background: #FFF;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let oC = document.getElementById('c1');
+            let gd = oC.getContext('2d');
+
+            gd.moveTo(100, 100);
+            gd.lineTo(200, 200);
+            gd.strokeStyle = 'red';
+            gd.stroke();
+
+            // 画线
+            // 延迟显示，清晰看到效果
+            // setTimeout(() => {
+            //     gd.moveTo(300, 100);
+            //     gd.lineTo(400, 200);
+            //     gd.strokeStyle = 'yellow';
+            //     gd.stroke();
+            // }, 1000);
+
+            // 清楚之前的一切路径  类PS路径
+            // 警告 一切路径操作之前，一定要beginPath()
+            // beginPath() 清除之前的路径
+            // closePath() 闭合当前的路径
+
+            // 路径操作：
+            // moveTo/lineTo
+            // beginPath
+            // closePath
+            // stroke/fill 描边/填充
+
+            gd.beginPath();
+
+            gd.moveTo(300, 100);
+            gd.lineTo(400, 200);
+            gd.strokeStyle = 'yellow';
+            gd.stroke();
+            gd.closePath();
+        };
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" width="800" height="600"></canvas>
+</body>
+
+</html>
