@@ -1,3 +1,3 @@
 # Scytale
-hi humans!
-this is my first github project try it.
+ These are some of the web front end learning tests 
+
